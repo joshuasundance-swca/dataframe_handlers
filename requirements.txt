@@ -1,0 +1,6 @@
+dask[dataframe]
+numpy
+# vaex
+pandas
+pytest
+xarray
