@@ -27,21 +27,21 @@ While the interface may be applicable to many use cases, the immediate goal is t
 
 The base class, `BaseDataFrameHandler`, defines an abstract interface with the following methods:
 
-- `get_unique(self, column: str, limit: Optional[int] = None) -> Collection`
+- `get_unique(column: str, limit: Optional[int] = None) -> Collection`
 - `get_value_counts(column: str, limit: Optional[int] = None) -> Mapping[str, int]`
-- `get_data_range(self, column: str) -> Sequence`
-- `get_missing_filter(self, column: str) -> Sequence[bool]`
+- `get_data_range(column: str) -> Sequence`
+- `get_missing_filter(column: str) -> Sequence[bool]`
 - `get_value_filter(column: str, values: list, invert: bool = False) -> Sequence[bool]`
-- `get_columns(self) -> Collection[str]`
-- `get_numeric_columns(self) -> Collection[str]`
+- `get_columns() -> Collection[str]`
+- `get_numeric_columns() -> Collection[str]`
 - `get_column_types(default_str: bool = True) -> Mapping[str, Union[object, type, str]]`
 
 Concrete implementations of this interface exist for:
 
 - Pandas (`PandasDataFrameHandler`)
-- Dask (`DaskHandler`)
-- Xarray (`XarrayHandler`)
-- Vaex (`VaexHandler`, *currently disabled*)
+- Dask (`DaskDataFrameHandler`)
+- Xarray (`XarrayDataFrameHandler`)
+- Vaex (`VaexDataFrameHandler`, *currently disabled*)
 
 To use a handler, simply instantiate it passing your dataframe:
 
