@@ -21,7 +21,7 @@ The base class, `BaseDataFrameHandler`, defines an abstract interface with the f
 - `get_value_counts(column: str, limit: Optional[int] = None) -> Mapping[str, int]`
 - `get_data_range(self, column: str) -> Sequence`
 - `get_missing_filter(self, column: str) -> Sequence[bool]`
-- `get_value_filter(column: str, values: list, invert: bool = False) -> Sequence[bool]:`
+- `get_value_filter(column: str, values: list, invert: bool = False) -> Sequence[bool]`
 - `get_columns(self) -> Collection[str]`
 - `get_numeric_columns(self) -> Collection[str]`
 - `get_column_types(default_str: bool = True) -> Mapping[str, Union[object, type, str]]`
