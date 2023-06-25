@@ -2,7 +2,7 @@ from typing import Optional, Union
 
 import dask.dataframe as dd
 
-from .pandas_handler import PandasDataFrameHandler
+from ..pandas_handler import PandasDataFrameHandler
 
 
 class DaskDataFrameHandler(PandasDataFrameHandler):

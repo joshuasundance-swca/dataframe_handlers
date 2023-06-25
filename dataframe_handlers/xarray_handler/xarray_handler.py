@@ -3,7 +3,7 @@ import pandas as pd
 import xarray as xr
 
 from typing import Optional, Union
-from .pandas_handler import PandasDataFrameHandler
+from ..pandas_handler import PandasDataFrameHandler
 
 
 class XarrayDataFrameHandler(PandasDataFrameHandler):

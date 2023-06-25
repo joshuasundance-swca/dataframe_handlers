@@ -74,6 +74,25 @@ There are a few ways you can contribute to `dataframe_handlers` and help guide i
 
 **We aim for `dataframe_handlers` to be a community project guided by user needs and feedback.** Please feel free to open issues to propose new ideas, give feedback on the direction of the project or interface design, or submit pull requests with your contributions and improvements!
 
+## Development & Testing
+
+```bash
+# install pre-commit, update hooks
+pip install pre-commit
+pre-commit install
+pre-commit autoupdate
+
+# ...fix things... or break things...
+
+# run tests, create coverage report
+docker compose run tester
+
+# add your changes, run pre-commit until everything passes
+git add -u && pre-commit run
+
+# submit a pull request!
+```
+
 ## License
 
 `dataframe_handlers` is licensed under the MIT license. See the LICENSE file for details.

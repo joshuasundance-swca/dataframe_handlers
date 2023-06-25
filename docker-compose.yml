@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  tester:
+    container_name: tester
+    build: .
+    volumes:
+      - .:/home/appuser/dataframe_handlers
+    working_dir: /home/appuser/dataframe_handlers
+    command: "/home/appuser/dataframe_handlers/run_tests.sh"

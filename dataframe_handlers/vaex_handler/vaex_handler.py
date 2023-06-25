@@ -1,7 +1,6 @@
 # import vaex
 # from typing import Optional
-# from .base import BaseDataFrameHandler
-#
+# from ..base import BaseDataFrameHandler
 #
 #
 # class VaexDataFrameHandler(BaseDataFrameHandler):
@@ -11,16 +10,23 @@
 #         super().__init__(df)
 #
 #     def get_unique(self, column: str, limit: Optional[int] = None) -> list:
-#         return self.df.unique(column, limit=limit + 1 if limit else None, limit_raise=False)
+#         return self.df.unique(
+#             column,
+#             limit=limit + 1 if limit else None,
+#             limit_raise=False,
+#         )
 #
-#     def get_value_counts(self, column: str, limit: Optional[int] = None) -> vaex.dataframe.DataFrame:
-#         (
-#             self.df
-#             .groupby(
+#     def get_value_counts(
+#         self,
+#         column: str,
+#         limit: Optional[int] = None,
+#     ) -> vaex.dataframe.DataFrame:
+#         value_counts_df = (
+#             self.df.groupby(
 #                 column,
 #                 agg="count",
 #                 sort="count",
-#                 ascending=False
+#                 ascending=False,
 #             )
 #             .to_pandas_df()
 #             .rename(columns={column: "value"})
@@ -31,11 +37,15 @@
 #         minmax = self.df[column].minmax()
 #         return minmax[0].item(), minmax[1].item()
 #
-#
 #     def get_missing_filter(self, column: str) -> vaex.expression.Expression:
 #         return self.df[column].isna()
 #
-#     def get_value_filter(self, column: str, values: list, invert: bool = False) -> vaex.expression.Expression:
+#     def get_value_filter(
+#         self,
+#         column: str,
+#         values: list,
+#         invert: bool = False,
+#     ) -> vaex.expression.Expression:
 #         _filter = self.df[column].isin(values)
 #         return ~_filter if invert else _filter
 #
