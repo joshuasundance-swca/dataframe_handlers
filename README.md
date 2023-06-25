@@ -39,9 +39,9 @@ The base class, `BaseDataFrameHandler`, defines an abstract interface with the f
 Concrete implementations of this interface exist for:
 
 - Pandas (`PandasDataFrameHandler`)
-- Dask (`DaskHandler`)
-- Xarray (`XarrayHandler`)
-- Vaex (`VaexHandler`, *currently disabled*)
+- Dask (`DaskDataFrameHandler`)
+- Xarray (`XarrayDataFrameHandler`)
+- Vaex (`VaexDataFrameHandler`, *currently disabled*)
 
 To use a handler, simply instantiate it passing your dataframe:
 
