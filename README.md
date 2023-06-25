@@ -18,9 +18,18 @@ While the interface may be applicable to many use cases, the immediate goal is t
 
 ## Installation
 
-```
-# TODO
-# pip install .
+```bash
+# any of the following
+
+pip install .
+pip install .[pandas]
+pip install .[dask]
+pip install .[vaex]
+pip install .[xarray]
+# pip install .[vaex]
+pip install .[testing]
+
+pip install .[pandas,dask,xarray,testing]
 ```
 
 ## Usage
