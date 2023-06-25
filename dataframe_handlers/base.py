@@ -1,3 +1,4 @@
+import xarray as xr
 import abc
 import pandas as pd
 from typing import Optional, Union
@@ -8,6 +9,7 @@ SUPPORTED_DFS = Union[
     # "geopandas.GeoDataFrame",
     # "vaex.dataframe.DataFrame",
     dd.DataFrame,
+    xr.DataArray,
 ]
 
 
