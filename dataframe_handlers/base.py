@@ -1,30 +1,19 @@
-import xarray as xr
 import abc
-import pandas as pd
-from typing import Optional, Union
-import dask.dataframe as dd
-
-SUPPORTED_DFS = Union[
-    pd.DataFrame,
-    # "geopandas.GeoDataFrame",
-    # "vaex.dataframe.DataFrame",
-    dd.DataFrame,
-    xr.DataArray,
-]
+from typing import Optional, Sequence, Mapping, Collection, Union
 
 
 class BaseDataFrameHandler(abc.ABC):
-    def __init__(self, df: SUPPORTED_DFS):
+    def __init__(self, df):
         """
         Initialize DataFrameHandler.
 
         Args:
-            df: DataFrame object to be handled.
+            df: DataFrame-like object to be handled.
         """
         self.df = df
 
     @abc.abstractmethod
-    def get_unique(self, column: str, limit: Optional[int] = None) -> list:
+    def get_unique(self, column: str, limit: Optional[int] = None) -> Collection:
         """
         Get unique values in a column of the DataFrame.
 
@@ -33,7 +22,7 @@ class BaseDataFrameHandler(abc.ABC):
             limit: Maximum number of unique values to return.
 
         Returns:
-            List of unique values.
+            Collection of unique values.
         """
         pass
 
@@ -42,7 +31,7 @@ class BaseDataFrameHandler(abc.ABC):
         self,
         column: str,
         limit: Optional[int] = None,
-    ) -> pd.DataFrame:
+    ) -> Mapping[str, int]:
         """
         Count the occurrences of each value in a column of the DataFrame.
 
@@ -51,12 +40,12 @@ class BaseDataFrameHandler(abc.ABC):
             limit: Maximum number of value counts to return.
 
         Returns:
-            DataFrame with value counts.
+            (value, count) Mapping
         """
         pass
 
     @abc.abstractmethod
-    def get_data_range(self, column: str) -> tuple:
+    def get_data_range(self, column: str) -> Sequence:
         """
         Get the minimum and maximum values in a column of the DataFrame.
 
@@ -64,12 +53,12 @@ class BaseDataFrameHandler(abc.ABC):
             column: Name of the column.
 
         Returns:
-            Tuple containing the minimum and maximum values.
+            Sequence containing the minimum and maximum values.
         """
         pass
 
     @abc.abstractmethod
-    def get_missing_filter(self, column: str) -> pd.Series:
+    def get_missing_filter(self, column: str) -> Sequence[bool]:
         """
         Filter the DataFrame based on missing values in a column.
 
@@ -87,7 +76,7 @@ class BaseDataFrameHandler(abc.ABC):
         column: str,
         values: list,
         invert: bool = False,
-    ) -> pd.Series:
+    ) -> Sequence[bool]:
         """
         Filter the DataFrame based on specified values in a column.
 
@@ -102,15 +91,18 @@ class BaseDataFrameHandler(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def get_columns(self) -> list[str]:
+    def get_columns(self) -> Collection[str]:
         pass
 
     @abc.abstractmethod
-    def get_numeric_columns(self) -> list[str]:
+    def get_numeric_columns(self) -> Collection[str]:
         pass
 
     @abc.abstractmethod
-    def get_column_types(self, default_str: bool = True) -> dict:
+    def get_column_types(
+        self,
+        default_str: bool = True,
+    ) -> Mapping[str, Union[object, type, str]]:
         """
         Get the types of columns in the DataFrame.
 

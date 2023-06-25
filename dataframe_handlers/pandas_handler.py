@@ -1,17 +1,17 @@
+from typing import Optional, Union
+
+import numpy as np
 import pandas as pd
 
 from .base import BaseDataFrameHandler
-from typing import Optional
 
 
 class PandasDataFrameHandler(BaseDataFrameHandler):
     df: pd.DataFrame
 
-    def __init__(self, df: pd.DataFrame):
-        super().__init__(df)
-
-    def get_unique(self, column: str, limit: Optional[int] = None) -> list:
-        return self.df[column].unique()[:limit].tolist()
+    def get_unique(self, column: str, limit: Optional[int] = None) -> np.ndarray:
+        unique_values_array = self.df[column].unique()
+        return unique_values_array if limit is None else unique_values_array[:limit]
 
     def get_value_counts(
         self,
@@ -51,7 +51,10 @@ class PandasDataFrameHandler(BaseDataFrameHandler):
     def get_numeric_columns(self) -> list[str]:
         return self.df.select_dtypes(include=["number"]).columns.tolist()
 
-    def get_column_types(self, default_str: bool = True) -> dict:
+    def get_column_types(
+        self,
+        default_str: bool = True,
+    ) -> dict[str, Union[object, type, str]]:
         dtype_dict = {
             "i": int,
             "u": int,

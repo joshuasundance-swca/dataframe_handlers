@@ -1,58 +1,47 @@
+from typing import Optional, Union
+
 import dask.dataframe as dd
-import pandas as pd
-from typing import Optional
+
 from .pandas_handler import PandasDataFrameHandler
 
 
 class DaskDataFrameHandler(PandasDataFrameHandler):
     df: dd.DataFrame
 
-    def __init__(self, df: dd.DataFrame):
-        super().__init__(df)
-
-    def get_unique(self, column: str, limit: Optional[int] = None) -> list:
-        unique_values = self.df[column].unique().compute()
+    def get_unique(self, column: str, limit: Optional[int] = None) -> dd.Series:
+        unique_values_series = self.df[column].compute().unique()
         return (
-            unique_values[:limit].tolist()
-            if limit is not None
-            else unique_values.tolist()
+            unique_values_series if limit is None else unique_values_series.head(limit)
         )
 
     def get_value_counts(
         self,
         column: str,
         limit: Optional[int] = None,
-    ) -> pd.DataFrame:
+    ) -> dd.DataFrame:
         value_counts_df = (
-            self.df[column]
-            .value_counts(dropna=False)
-            .reset_index(drop=False)
-            .rename(
-                columns={
-                    column: "value",
-                },
-            )
+            self.df[column].compute().value_counts(dropna=False).reset_index()
         )
-        value_counts_df = (
-            value_counts_df if limit is None else value_counts_df.head(limit)
-        )
-        return value_counts_df.compute()
+        value_counts_df.columns = ["value", "count"]
+        return value_counts_df if limit is None else value_counts_df.head(limit)
 
     def get_data_range(self, column: str) -> tuple:
-        min_value, max_value = (
-            self.df[column].min().compute(),
-            self.df[column].max().compute(),
-        )
-        return min_value, max_value
+        # self.df[column].divisions
+        min_value = self.df[column].min().compute()
+        max_value = self.df[column].max().compute()
+        return (min_value, max_value)
 
-    def get_missing_filter(self, column: str) -> dd.Series:
-        return self.df[column].isna()
-
-    def get_value_filter(
+    def get_column_types(
         self,
-        column: str,
-        values: list,
-        invert: bool = False,
-    ) -> dd.Series:
-        _filter = self.df[column].isin(values)
-        return ~_filter if invert else _filter
+        default_str: bool = True,
+    ) -> dict[str, Union[object, type, str]]:
+        dtype_dict = {
+            "i": int,
+            "u": int,
+            "f": float,
+            "b": bool,
+        }
+        column_types = self.df.dtypes
+        return column_types.apply(
+            lambda dtype: dtype_dict.get(dtype.kind, str if default_str else dtype),
+        ).to_dict()

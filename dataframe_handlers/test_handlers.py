@@ -1,16 +1,13 @@
 import dask.dataframe as dd
 import pandas as pd
 import pytest
-
-# import numpy as np
-# import xarray as xr
-# import vaex
+import xarray as xr
 
 from . import (
     PandasDataFrameHandler,
     DaskDataFrameHandler,
     # VaexDataFrameHandler,
-    # XarrayDataFrameHandler
+    XarrayDataFrameHandler,
 )
 
 data_A = [1, 2, 3, 4, 5]
@@ -34,7 +31,7 @@ class DataFrameHandlerTestBase:
     def test_get_unique(handler):
         unique_values = handler.get_unique("B")
         expected_values = ["foo", "bar", "baz", "qux"]
-        assert unique_values == expected_values
+        assert set(unique_values) == set(expected_values)
 
     @staticmethod
     def test_get_value_counts(handler):
@@ -43,7 +40,10 @@ class DataFrameHandlerTestBase:
         expected_counts = pd.DataFrame(
             {"value": ["foo", "bar", "baz", "qux"], "count": [2, 1, 1, 1]},
         )
-        pd.testing.assert_frame_equal(value_counts, expected_counts)
+        pd.testing.assert_frame_equal(
+            pd.DataFrame(value_counts).sort_values("value").reset_index(drop=True),
+            expected_counts.sort_values("value").reset_index(drop=True),
+        )
 
     @staticmethod
     def test_get_data_range(handler):
@@ -71,7 +71,7 @@ class DataFrameHandlerTestBase:
     def test_get_columns(handler):
         columns = handler.get_columns()
         expected_columns = ["A", "B", "C"]
-        assert columns == expected_columns
+        assert set(columns) == set(expected_columns)
 
     @staticmethod
     def test_get_numeric_columns(handler):
@@ -115,6 +115,21 @@ class TestDaskDataFrameHandler(DataFrameHandlerTestBase):
         return DaskDataFrameHandler(data)
 
 
+class TestXarrayDataFrameHandler(DataFrameHandlerTestBase):
+    @pytest.fixture
+    def data(self):
+        data = {
+            "A": data_A,
+            "B": data_B,
+            "C": data_C,
+        }
+        df = pd.DataFrame(data)
+        return xr.Dataset.from_dataframe(df)
+
+    def create_handler(self, data):
+        return XarrayDataFrameHandler(data)
+
+
 # class TestVaexDataFrameHandler(DataFrameHandlerTestBase):
 #     @pytest.fixture
 #     def data(self):
@@ -127,65 +142,6 @@ class TestDaskDataFrameHandler(DataFrameHandlerTestBase):
 #
 #     def create_handler(self, data):
 #         return VaexDataFrameHandler(data)
-
-
-# class TestXarrayDataFrameHandler:
-#     @pytest.fixture
-#     def sample_data(self):
-#         data = np.array(list(zip(data_A, data_B, data_C)))
-#         da = xr.DataArray(
-#             data,
-#             coords={
-#                 'idx': np.arange(data.shape[0]),
-#                 'column': list("ABC")
-#             },
-#             dims=['idx', 'column']
-#         )
-#         return da
-#
-#     @pytest.fixture
-#     def handler(self, sample_data):
-#         return XarrayDataFrameHandler(sample_data)
-#
-#     def test_get_unique(self, handler):
-#         unique_values = handler.get_unique('B')
-#         expected_values = ['foo', 'bar', 'baz', 'qux']
-#         assert sorted(unique_values) == sorted(expected_values)
-#
-#     def test_get_value_counts(self, handler):
-#         value_counts = handler.get_value_counts('B')
-#         expected_counts = [('foo', 2), ('bar', 1), ('baz', 1), ('qux', 1)]
-#         assert sorted(value_counts) == sorted(expected_counts)
-#
-#     def test_get_data_range(self, handler):
-#         data_range = handler.get_data_range('A')
-#         expected_range = (1.0, 5.0)
-#         assert data_range == expected_range
-#
-#     def test_get_missing_filter(self, handler):
-#         missing_filter = handler.get_missing_filter('B')
-#         expected_filter = xr.DataArray([False, False, False, False, False], dims='dim')
-#         assert xr.testing.assert_equal(missing_filter, expected_filter)
-#
-#     def test_get_value_filter(self, handler):
-#         value_filter = handler.get_value_filter('B', ['foo', 'baz'])
-#         expected_filter = xr.DataArray([True, False, True, True, False], dims='dim')
-#         assert xr.testing.assert_equal(value_filter, expected_filter)
-#
-#     def test_get_columns(self, handler):
-#         columns = handler.get_columns()
-#         expected_columns = ['A', 'B', 'C']
-#         assert sorted(columns) == sorted(expected_columns)
-#
-#     def test_get_numeric_columns(self, handler):
-#         numeric_columns = handler.get_numeric_columns()
-#         expected_columns = ['A']
-#         assert sorted(numeric_columns) == sorted(expected_columns)
-#
-#     def test_get_column_types(self, handler):
-#         column_types = handler.get_column_types()
-#         expected_types = {'A': int, 'B': str, 'C': bool}
-#         assert column_types == expected_types
 
 
 if __name__ == "__main__":
