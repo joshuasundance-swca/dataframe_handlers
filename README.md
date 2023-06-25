@@ -2,6 +2,16 @@ This README was produced by [Anthropic's Claude LLM](https://www.anthropic.com/p
 
 # dataframe_handlers
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![python](https://img.shields.io/badge/Python-3-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
+[![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v1.json)](https://github.com/charliermarsh/ruff)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
+![Test coverage](./coverage.svg)
+
+
 `dataframe_handlers` aims to provide an abstract base class and concrete implementations for handling and manipulating dataframes of various types in Python.
 While the interface may be applicable to many use cases, the immediate goal is to standardize interaction with dataframe libraries and enable interoperability between them in the context of the [Solara](https://solara.dev) Python library, which can be used to create reactive web apps using pure Python.
 

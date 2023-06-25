@@ -1,3 +1,5 @@
+coverage
+coverage-badge
 dask[dataframe]
 numpy
 # vaex
