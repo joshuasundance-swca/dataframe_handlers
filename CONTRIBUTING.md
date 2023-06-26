@@ -10,8 +10,6 @@ To integrate a new handler, you need to create a concrete implementation of the 
 
 1. **Fork the Repository**: Start by forking the `dataframe_handlers` repository to your GitHub account. You can do this by clicking the "Fork" button on the repository page.
 
-<br>
-
 2. **Create a New Branch**: Clone the forked repository to your local development environment. Create a new branch with a descriptive name that reflects the purpose of your contribution.
 
    ```bash
@@ -19,8 +17,6 @@ To integrate a new handler, you need to create a concrete implementation of the 
    cd dataframe_handlers
    git checkout -b my_library_handler
    ```
-
-<br>
 
 3. **Implement the Handler**: Create a new Python module within the `dataframe_handlers` package to contain your handler implementation.
 
@@ -63,10 +59,8 @@ To integrate a new handler, you need to create a concrete implementation of the 
 
    from .my_library_handler import MyLibraryDataFrameHandler
 
-   __all__ = ["DaskDataFrameHandler"]
+   __all__ = ["MyLibraryDataFrameHandler"]
    ```
-
-<br>
 
 4. **Implement the Test Class**: Create a new Python module within the `tests` directory to contain your test class. For consistency, name the file `test_my_library_handler.py`.
 
@@ -88,11 +82,7 @@ To integrate a new handler, you need to create a concrete implementation of the 
            return my_library.DataFrame(test_pandas_df)
    ```
 
-<br>
-
 5. **Update `README.md`**: If you have created a new handler that supports a new library, update the `README.md` file to include the new library in the list of supported implementations. Provide documentation and instructions as appropriate.
-
-<br>
 
 6. **Run Tests**: Before submitting your contribution, make sure to run the tests locally to verify that your new handler works correctly. Execute the following command from the root of the `dataframe_handlers` repository:
 
@@ -118,8 +108,6 @@ To integrate a new handler, you need to create a concrete implementation of the 
 
    Ensure that all checks and tests pass with high coverage of your new handler and without any failures or errors.
 
-<br>
-
 7. **Commit and Push Changes**: Once your implementation and tests are complete, commit your changes and push them to your forked repository.
 
    ```bash
@@ -128,13 +116,17 @@ To integrate a new handler, you need to create a concrete implementation of the 
    git push origin my_library_handler
    ```
 
-<br>
+8. **Create a Pull Request**: Go to the dataframe_handlers repository on GitHub and switch to the branch you pushed. Click the "New Pull Request" button to create a pull request for the associated branch.
 
-9. **Submit a Pull Request**: Go to the `dataframe_handlers` repository on GitHub and switch to the branch you pushed. Click the "New Pull Request" button and provide a descriptive title and description for your pull request. Submit the pull request to the `main` branch of the original `dataframe_handlers` repository.
+   1. Compare Across Forks: On the page to create a new pull request, click on the "compare across forks" link. This allows you to compare and merge your changes from the forked repository to the original repository.
 
-<br>
+   2. Select Base and Compare Branches: In the "base branch" dropdown menu, select the branch of the upstream repository you'd like to merge changes into. In the "head fork" dropdown menu, select your fork, and then use the "compare branch" dropdown menu to select the branch you made your changes in.
 
-10. **Review and Iterate**: Your pull request will be reviewed by the project maintainers. They may provide feedback or request changes. Be responsive to the feedback and make any necessary updates or improvements based on the review comments. Iterate on this process until your contribution is accepted.
+   3. Provide Title and Description: Type a title and description for your pull request. Provide a clear and concise summary of the changes you've made.
+
+   4. Create the Pull Request: To create a pull request that is ready for review, click "Create Pull Request". This will open the pull request in the upstream repository.
+
+9. **Review and Iterate**: Your pull request will be reviewed by the project maintainers. They may provide feedback or request changes. Be responsive to the feedback and make any necessary updates or improvements based on the review comments. Iterate on this process until your contribution is accepted.
 
 <br>
 
