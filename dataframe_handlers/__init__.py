@@ -48,6 +48,8 @@ def get_handler(df, handler_type=None):
     for df_type, df_handler in dispatch_dict.items():
         if isinstance(df, df_type):
             return df_handler(df)
+    else:
+        raise NotImplementedError(f"Unsupported DataFrame type: {type(df)}")
 
 
 __all__.append("dispatch_dict")
