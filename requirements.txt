@@ -1,3 +1,4 @@
+bumpver
 coverage
 coverage-badge
 dask[dataframe]
