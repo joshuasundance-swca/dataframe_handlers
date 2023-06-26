@@ -2,7 +2,7 @@ from typing import Any, Optional, Type
 
 from .base import BaseDataFrameHandler
 
-__version__ = "0.0.4"
+__version__ = "0.0.5"
 __all__ = ["BaseDataFrameHandler"]
 
 dispatch_dict = {}

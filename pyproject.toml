@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 
 [project]
 name = "dataframe_handlers"
-version = "0.0.4"
+version = "0.0.5"
 description = "A package for handling dataframes with optional backends."
 authors = [{name="Joshua Sundance Bailey"}]
 maintainers = [{name="Joshua Sundance Bailey"}]
@@ -28,7 +28,7 @@ xarray = ["xarray"]
 
 
 [tool.bumpver]
-current_version = "0.0.4"
+current_version = "0.0.5"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "bump version {old_version} -> {new_version}"
 commit = true
