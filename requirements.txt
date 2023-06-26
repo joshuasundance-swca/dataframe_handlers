@@ -1,3 +1,4 @@
+build
 bumpver
 coverage
 coverage-badge
@@ -6,4 +7,5 @@ numpy
 # vaex
 pandas
 pytest
+twine
 xarray

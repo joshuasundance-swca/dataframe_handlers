@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 
 [project]
 name = "dataframe_handlers"
-version = "0.0.3"
+version = "0.0.4"
 description = "A package for handling dataframes with optional backends."
 authors = [{name="Joshua Sundance Bailey"}]
 maintainers = [{name="Joshua Sundance Bailey"}]
@@ -20,26 +20,15 @@ keywords = ["dataframe", "interoperability"]
 [project.urls]
 Repository = "https://github.com/joshuasundance-swca/dataframe_handlers.git"
 
-# Define optional dependencies
 [project.optional-dependencies]
 pandas = ["pandas"]
 dask = ["dask[dataframe]", "pandas"]
 #vaex = ["vaex"]
 xarray = ["xarray"]
-testing = [
-    "bumpver",
-    "coverage",
-    "coverage-badge",
-    "dask[dataframe]",
-    "numpy",
-#    "vaex",
-    "pandas",
-    "pytest",
-    "xarray",
-]
+
 
 [tool.bumpver]
-current_version = "0.0.3"
+current_version = "0.0.4"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "bump version {old_version} -> {new_version}"
 commit = true
