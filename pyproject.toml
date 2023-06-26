@@ -20,23 +20,12 @@ keywords = ["dataframe", "interoperability"]
 [project.urls]
 Repository = "https://github.com/joshuasundance-swca/dataframe_handlers.git"
 
-# Define optional dependencies
 [project.optional-dependencies]
 pandas = ["pandas"]
 dask = ["dask[dataframe]", "pandas"]
 #vaex = ["vaex"]
 xarray = ["xarray"]
-testing = [
-    "bumpver",
-    "coverage",
-    "coverage-badge",
-    "dask[dataframe]",
-    "numpy",
-#    "vaex",
-    "pandas",
-    "pytest",
-    "xarray",
-]
+
 
 [tool.bumpver]
 current_version = "0.0.3"
