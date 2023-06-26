@@ -2,7 +2,6 @@ import dask.dataframe as dd
 import pytest
 
 from . import DataFrameHandlerTestBase, test_pandas_df
-from ..dask_handler import DaskDataFrameHandler
 
 
 class TestDaskDataFrameHandler(DataFrameHandlerTestBase):

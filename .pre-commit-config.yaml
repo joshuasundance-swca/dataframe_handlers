@@ -65,4 +65,4 @@ repos:
     rev: 1.7.5
     hooks:
     -   id: bandit
-        args: ["-x", "dataframe_handlers/tests/*.py"]
+        args: ["-x", "tests/*.py"]

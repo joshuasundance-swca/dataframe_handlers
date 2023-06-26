@@ -11,8 +11,11 @@ license = {text="MIT"}
 readme = "README.md"
 requires-python = ">=3.9"
 classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
     "Programming Language :: Python :: 3",
 ]
+keywords = ["dataframe", "interoperability"]
 
 [project.urls]
 Repository = "https://github.com/joshuasundance-swca/dataframe_handlers.git"

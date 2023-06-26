@@ -1,6 +1,6 @@
 import pandas as pd
 import pytest
-from .. import get_handler
+from dataframe_handlers import get_handler
 
 data_A = [1, 2, 3, 4, 5]
 data_B = ["foo", "bar", "foo", "baz", "qux"]
