@@ -24,7 +24,6 @@ class BaseDataFrameHandler(abc.ABC):
         Returns:
             Collection of unique values.
         """
-        pass
 
     @abc.abstractmethod
     def get_value_counts(
@@ -42,7 +41,6 @@ class BaseDataFrameHandler(abc.ABC):
         Returns:
             (value, count) Mapping
         """
-        pass
 
     @abc.abstractmethod
     def get_data_range(self, column: str) -> Sequence:
@@ -55,7 +53,6 @@ class BaseDataFrameHandler(abc.ABC):
         Returns:
             Sequence containing the minimum and maximum values.
         """
-        pass
 
     @abc.abstractmethod
     def get_missing_filter(self, column: str) -> Sequence[bool]:
@@ -68,7 +65,6 @@ class BaseDataFrameHandler(abc.ABC):
         Returns:
             Boolean Series indicating missing values.
         """
-        pass
 
     @abc.abstractmethod
     def get_value_filter(
@@ -88,15 +84,24 @@ class BaseDataFrameHandler(abc.ABC):
         Returns:
             Boolean Series indicating the filtered rows.
         """
-        pass
 
     @abc.abstractmethod
     def get_columns(self) -> Collection[str]:
-        pass
+        """
+        Return Collection of column names as strings.
+
+        Returns:
+            Collection of column names as strings.
+        """
 
     @abc.abstractmethod
     def get_numeric_columns(self) -> Collection[str]:
-        pass
+        """
+        Return Collection of numeric column names as strings.
+
+        Returns:
+            Collection of numeric column names as strings.
+        """
 
     @abc.abstractmethod
     def get_column_types(
@@ -112,4 +117,3 @@ class BaseDataFrameHandler(abc.ABC):
         Returns:
             Dictionary mapping column names to their types.
         """
-        pass
