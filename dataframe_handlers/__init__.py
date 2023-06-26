@@ -1,3 +1,5 @@
+from typing import Any, Optional, Type
+
 from .base import BaseDataFrameHandler
 
 __all__ = ["BaseDataFrameHandler"]
@@ -42,7 +44,24 @@ except ImportError:
 #     pass
 
 
-def get_handler(df, handler_type=None):
+def get_handler(df: Any, handler_type: Optional[Type] = None) -> Any:
+    """
+    Function to get the appropriate handler based on the dataframe type.
+
+    Args:
+        df (Any): The dataframe for which we want to get a handler.
+        handler_type (Optional[Type]): An optional handler type. If provided, this function
+        will instantiate a handler of this type with the dataframe `df` and return it.
+
+    Returns:
+        Any: Returns the appropriate handler for the dataframe `df`. If `handler_type` is
+        provided, it returns an instance of `handler_type`.
+
+    Raises:
+        NotImplementedError: If the dataframe's type does not have an associated handler in
+        `dispatch_dict`, and `handler_type` is not provided or None, it raises a
+        NotImplementedError.
+    """
     if handler_type is not None:
         return handler_type(df)
     for df_type, df_handler in dispatch_dict.items():
