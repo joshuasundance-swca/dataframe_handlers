@@ -44,7 +44,7 @@ except ImportError:
 #     pass
 
 
-def get_handler(df: Any, handler_type: Optional[Type] = None) -> Any:
+def get_handler(df: Any, handler_type: Optional[Type] = None) -> BaseDataFrameHandler:
     """
     Function to get the appropriate handler based on the dataframe type.
 
@@ -54,7 +54,7 @@ def get_handler(df: Any, handler_type: Optional[Type] = None) -> Any:
         will instantiate a handler of this type with the dataframe `df` and return it.
 
     Returns:
-        Any: Returns the appropriate handler for the dataframe `df`. If `handler_type` is
+        Returns the appropriate handler for the dataframe `df`. If `handler_type` is
         provided, it returns an instance of `handler_type`.
 
     Raises:
