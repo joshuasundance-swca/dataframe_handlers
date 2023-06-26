@@ -55,10 +55,10 @@ To use a handler, simply instantiate it passing your dataframe:
 
 ```python
 import pandas as pd
-from dataframe_handlers import PandasDataFrameHandler
+from dataframe_handlers import get_handler
 
 df = pd.DataFrame({'A': [1, 2, 3]})
-handler = PandasDataFrameHandler(df)
+handler = get_handler(df)
 
 columns = handler.get_columns()
 # ['A']

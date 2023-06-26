@@ -1,5 +1,6 @@
 import pandas as pd
 import pytest
+from .. import get_handler
 
 data_A = [1, 2, 3, 4, 5]
 data_B = ["foo", "bar", "foo", "baz", "qux"]
@@ -17,13 +18,10 @@ test_pandas_df = pd.DataFrame(test_data)
 class DataFrameHandlerTestBase:
     @pytest.fixture
     def handler(self, data):
-        return self.create_handler(data)
+        return get_handler(data)
 
     @pytest.fixture
     def data(self):
-        pass
-
-    def create_handler(self, data):
         pass
 
     @staticmethod

@@ -8,6 +8,3 @@ class TestPandasDataFrameHandler(DataFrameHandlerTestBase):
     @pytest.fixture
     def data(self):
         return test_pandas_df
-
-    def create_handler(self, data):
-        return PandasDataFrameHandler(data)

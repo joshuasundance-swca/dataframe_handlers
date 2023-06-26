@@ -18,6 +18,3 @@
 #     @pytest.fixture
 #     def data(self):
 #         return vaex.from_pandas(test_pandas_df)
-#
-#     def create_handler(self, data):
-#         return VaexDataFrameHandler(data)
