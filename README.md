@@ -53,7 +53,9 @@ Concrete implementations of this interface exist for:
 - Xarray (`XarrayDataFrameHandler`)
 - Vaex (`VaexDataFrameHandler`, *currently disabled*)
 
-To use a handler, simply instantiate it passing your dataframe:
+The easiest way to get a handler does not require knowing what type of dataframe you're dealing with.
+
+You can do this by using `dataframe_handlers.get_handler`, which will return a handler of the appropriate type based on the type of dataframe it is given.
 
 ```python
 import pandas as pd
@@ -82,26 +84,10 @@ There are a few ways you can contribute to `dataframe_handlers` and help guide i
 
 5. Improve validation. Stricter checks that subclasses implement the required methods, consistent method signatures, and edge case testing all help users build on the interface.
 
-**We aim for `dataframe_handlers` to be a community project guided by user needs and feedback.** Please feel free to open issues to propose new ideas, give feedback on the direction of the project or interface design, or submit pull requests with your contributions and improvements!
+**We aim for `dataframe_handlers` to be a community project guided by user needs and feedback.** Please feel free to open issues or start a discussion to propose new ideas, give feedback on the direction of the project or interface design, or submit pull requests with your contributions and improvements!
 
-## Development & Testing
+For specific instructions, please see `CONTRIBUTING.md`.
 
-```bash
-# install pre-commit, update hooks
-pip install pre-commit
-pre-commit install
-pre-commit autoupdate
-
-# ...fix things... or break things...
-
-# run tests, create coverage report
-docker compose run tester
-
-# add your changes, run pre-commit until everything passes
-git add -u && pre-commit run
-
-# submit a pull request!
-```
 
 ## License
 
