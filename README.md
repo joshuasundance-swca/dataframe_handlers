@@ -18,17 +18,19 @@ While the interface may be applicable to many use cases, the immediate goal is t
 
 ## Installation
 
+https://pypi.org/project/dataframe-handlers
+
 ```bash
 # any of the following
 
-pip install .
-pip install .[pandas]
-pip install .[dask]
-pip install .[xarray]
-# pip install .[vaex]
-pip install .[testing]
+pip install dataframe-handlers
+pip install dataframe-handlers[pandas]
+pip install dataframe-handlers[dask]
+pip install dataframe-handlers[xarray]
+# pip install dataframe-handlers[vaex]
+pip install dataframe-handlers[testing]
 
-pip install .[pandas,xarray,testing]
+pip install dataframe-handlers[pandas,xarray,testing]
 ```
 
 ## Usage
