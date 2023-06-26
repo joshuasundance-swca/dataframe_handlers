@@ -2,7 +2,7 @@ from typing import Any, Optional, Type
 
 from .base import BaseDataFrameHandler
 
-__version__ = "0.0.4"
+__version__ = "0.0.5"
 __all__ = ["BaseDataFrameHandler"]
 
 dispatch_dict = {}
@@ -13,9 +13,9 @@ try:
 
     __all__.append("PandasDataFrameHandler")
     dispatch_dict[pd.DataFrame] = PandasDataFrameHandler
-
-except ImportError:
+except ImportError:  # pragma: no cover
     pass
+
 
 try:
     import dask.dataframe as dd
@@ -23,8 +23,9 @@ try:
 
     __all__.append("DaskDataFrameHandler")
     dispatch_dict[dd.DataFrame] = DaskDataFrameHandler
-except ImportError:
+except ImportError:  # pragma: no cover
     pass
+
 
 try:
     import xarray as xr
@@ -32,8 +33,9 @@ try:
 
     __all__.append("XarrayDataFrameHandler")
     dispatch_dict[xr.Dataset] = XarrayDataFrameHandler
-except ImportError:
+except ImportError:  # pragma: no cover
     pass
+
 
 # try:
 #     import vaex
@@ -41,7 +43,7 @@ except ImportError:
 #
 #     __all__.append("VaexDataFrameHandler")
 #     dispatch_dict[vaex.dataframe.DataFrame] = VaexDataFrameHandler
-# except ImportError:
+# except ImportError: # pragma: no cover
 #     pass
 
 

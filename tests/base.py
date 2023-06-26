@@ -22,7 +22,19 @@ class DataFrameHandlerTestBase:
 
     @pytest.fixture
     def data(self):
-        pass
+        """Return dataframe appropriate for handler being tested."""
+
+    @staticmethod
+    def test_get_handler_type(handler):
+        assert isinstance(
+            get_handler(handler.df, handler_type=type(handler)),
+            type(handler),
+        )
+
+    @staticmethod
+    def test_bad_handler_type(handler):
+        with pytest.raises(NotImplementedError):
+            _ = get_handler("this is not a supported dataframe")
 
     @staticmethod
     def test_get_unique(handler):
