@@ -27,9 +27,12 @@ dask = ["dask[dataframe]", "pandas"]
 #vaex = ["vaex"]
 xarray = ["xarray"]
 testing = [
-    "pytest",
-    "pandas",
+    "coverage",
+    "coverage-badge",
     "dask[dataframe]",
+    "numpy",
 #    "vaex",
-    "xarray"
+    "pandas",
+    "pytest",
+    "xarray",
 ]
