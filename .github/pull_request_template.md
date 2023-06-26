@@ -1,4 +1,4 @@
-Thank you for contributing to `dataframe_handlers`. 
+Thank you for contributing to `dataframe_handlers`.
 Before submitting this PR, please make sure:
 
 - [ ] Your code builds clean without any errors or warnings
